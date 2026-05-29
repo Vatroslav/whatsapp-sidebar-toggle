@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "WhatsApp Web Sidebar Toggle",
   "description": "Hide/show the WhatsApp Web sidebar (private build).",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "background": {
     "service_worker": "background.js"
   },

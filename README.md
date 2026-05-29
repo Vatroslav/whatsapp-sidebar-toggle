@@ -7,6 +7,8 @@ Sakrij/prikaži WhatsApp Web sidebar (popis chatova) - korisno kad dijeliš ekra
 
 Vlastiti build - ne dolazi s Chrome Web Storea, nema `update_url`, pa se **nikad ne auto-updatea**. Kod se mijenja samo kad ga ti promijeniš.
 
+Kod skrivanja sidebara ujedno se nuliraju tanki (sub-pixel, ~0.8px) lijevi/desni borderi chat-panela koji bi se inače vidjeli kao dvije okomite crte na rubovima chata. Izmjena je reverzibilna - kad vratiš sidebar, borderi se vrate na originalno.
+
 ## Dozvole
 - `activeTab` + `scripting` - pristup samo aktivnom tabu i samo kad ručno pokreneš extension. Nema host permissions, nema pristupa drugim tabovima, nema mreže.
 
