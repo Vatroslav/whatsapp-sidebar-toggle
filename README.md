@@ -33,5 +33,3 @@ The original was reviewed (extracted from its CRX package) and judged safe - onl
 - fixed the `func` property in `chrome.scripting.executeScript` (the original used the non-existent `function`)
 - `Ctrl+Shift+S` works on its own, regardless of whether the popup is open (the original depended on the popup for this)
 - added a fix for the two vertical lines at the chat edges (zeroing the sub-pixel borders)
-
-There is also a separate, similarly named project `sanjeed5/whatsapp-sidebar-hider` - a different author, not the source of this build.
