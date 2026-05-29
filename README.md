@@ -20,3 +20,18 @@ Kod skrivanja sidebara ujedno se nuliraju tanki (sub-pixel, ~0.8px) lijevi/desni
 
 ## Provjera prečaca
 Ako `Ctrl+Shift+S` ne radi, vjerojatno ga koristi druga aplikacija ili extension - promijeni ga na `chrome://extensions/shortcuts`.
+
+## Original / porijeklo
+Nastao po uzoru na extension **WhatsApp Web Sidebar Toggle** (autor: `julianilevy`) s Chrome Web Storea:
+
+- ID: `meoojinhimemkeehlhbojjhnchhgpbak`
+- https://chromewebstore.google.com/detail/whatsapp-web-sidebar-togg/meoojinhimemkeehlhbojjhnchhgpbak
+
+Original je pregledan (izvučen iz CRX paketa) i ocijenjen sigurnim - samo `activeTab` + `scripting`, bez mreže i bez prikupljanja podataka. Ovaj build je čista prerada tog koda:
+
+- maknut `update_url` (bez auto-updatea)
+- ispravljen `func` property u `chrome.scripting.executeScript` (original je koristio nepostojeći `function`)
+- prečac `Ctrl+Shift+S` radi samostalno, neovisno o tome je li popup otvoren (original je za to ovisio o popupu)
+- dodan fix za dvije okomite crte na rubovima chata (nuliranje sub-pixel bordera)
+
+Postoji i zasebni, slično nazvani projekt `sanjeed5/whatsapp-sidebar-hider` - drugi autor, nije izvor ovog builda.
