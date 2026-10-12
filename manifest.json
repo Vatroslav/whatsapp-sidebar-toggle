@@ -1,14 +1,14 @@
 {
   "manifest_version": 3,
-  "name": "WhatsApp Web Sidebar Toggle",
-  "description": "Hide/show the WhatsApp Web sidebar.",
-  "version": "1.1.0",
+  "name": "WhatsApp Web + Gmail Sidebar Toggle",
+  "description": "Hide/show the WhatsApp Web sidebar and the Gmail main menu.",
+  "version": "1.2.0",
   "background": {
     "service_worker": "background.js"
   },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Toggle WhatsApp sidebar"
+    "default_title": "Toggle sidebar (WhatsApp Web / Gmail)"
   },
   "permissions": ["activeTab", "scripting"],
   "commands": {
@@ -17,7 +17,7 @@
         "default": "Ctrl+Shift+S",
         "mac": "Command+Shift+S"
       },
-      "description": "Toggle WhatsApp Web sidebar"
+      "description": "Toggle sidebar (WhatsApp Web chat list / Gmail main menu)"
     }
   },
   "icons": {

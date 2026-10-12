@@ -12,6 +12,12 @@ async function activeTabId() {
   const [inj] = await chrome.scripting.executeScript({
     target: { tabId },
     func: () => {
+      if (location.hostname === "mail.google.com") {
+        const expanded = document
+          .querySelector('[aria-label="Main menu"]')
+          ?.getAttribute("aria-expanded");
+        return expanded == null ? null : expanded === "true";
+      }
       const wrap = document.querySelector("#side")?.parentElement;
       return wrap ? wrap.style.display !== "none" : null; // true = visible
     },
@@ -23,41 +29,5 @@ async function activeTabId() {
 toggle.addEventListener("change", async () => {
   const tabId = await activeTabId();
   if (!tabId) return;
-  await chrome.scripting.executeScript({ target: { tabId }, func: toggleSidebar });
+  await chrome.scripting.executeScript({ target: { tabId }, files: ["toggle.js"] });
 });
-
-// Injected into the page. Kept identical to background.js#toggleSidebar.
-function toggleSidebar() {
-  const wrap = document.querySelector("#side")?.parentElement;
-  if (!wrap) return;
-  const header = wrap.parentElement?.querySelector("header");
-  const hidden = wrap.style.display === "none";
-
-  if (hidden) {
-    wrap.style.display = "";
-    if (header) header.style.display = "";
-    document.querySelectorAll("[data-wast-border]").forEach((el) => {
-      el.style.removeProperty("border-left-width");
-      el.style.removeProperty("border-right-width");
-      el.removeAttribute("data-wast-border");
-    });
-  } else {
-    wrap.style.display = "none";
-    if (header) header.style.display = "none";
-    const minH = window.innerHeight * 0.4;
-    const toFix = [];
-    document.querySelectorAll("#app *").forEach((el) => {
-      const r = el.getBoundingClientRect();
-      if (r.height <= minH) return;
-      const s = getComputedStyle(el);
-      if (parseFloat(s.borderLeftWidth) > 0 || parseFloat(s.borderRightWidth) > 0) {
-        toFix.push(el);
-      }
-    });
-    toFix.forEach((el) => {
-      el.setAttribute("data-wast-border", "1");
-      el.style.setProperty("border-left-width", "0", "important");
-      el.style.setProperty("border-right-width", "0", "important");
-    });
-  }
-}

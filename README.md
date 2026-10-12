@@ -1,9 +1,12 @@
-# WhatsApp Web Sidebar Toggle
+# WhatsApp Web + Gmail Sidebar Toggle
 
-Hide/show the WhatsApp Web sidebar (chat list) - handy when you share your screen and don't want your other conversations visible.
+Hide/show the WhatsApp Web sidebar (chat list) - handy when you share your screen and don't want your other conversations visible. The same shortcut collapses/expands the Gmail main menu (it clicks the hamburger button for you).
 
 - **Shortcut:** `Ctrl + Shift + S` (Mac: `Cmd + Shift + S`)
 - **Icon:** click opens a switch that reflects the current state
+- **Sites:** `web.whatsapp.com`, `mail.google.com`. On any other site it does nothing.
+
+The toggle logic lives in `toggle.js`, injected by both the shortcut (`background.js`) and the popup (`popup.js`). In Gmail the button is found by its `aria-label="Main menu"` (English UI), with the hamburger icon's SVG path as a language-independent fallback.
 
 Loaded as an unpacked extension, it has no `update_url`, so it **never auto-updates**. The code only changes when you change it.
 
